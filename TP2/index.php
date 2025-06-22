@@ -192,6 +192,7 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
             class="btn bg-verde-oscuro theme-controller join-item"
             aria-label="Dark"
             value="dark" />
+
     </div>
 
     <footer class="bg-verde-oscuro h-[50px] md:h-[80px] w-full">
