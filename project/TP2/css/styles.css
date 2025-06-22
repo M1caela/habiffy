@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Hand:wght@400..700&family=Quicksand:wght@300..700&display=swap');
+
+h1 {
+    font-family: "Edu VIC WA NT Hand", cursive;
+    font-weight: 700;
+    font-optical-sizing: auto;
+    font-size: 1.80em;
+}
+
+h2 {
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-size: 1.20em;
+}
+
+body {
+    margin: 0; padding: 0;
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+}
+
+.bg-verde-claro {
+    background-color: rgba(211, 220, 161, 1);
+    color: rgba(28, 96, 101, 1);
+}
+
+.bg-verde-oscuro {
+    background-color: rgba(28, 96, 101, 1);
+    color:  rgba(211, 220, 161, 1);
+}
+
+.bg-beige {
+    background-color:rgba(252, 249, 231, 1);
+    color: rgba(28, 96, 101, 1);
+}
+
+.btn-primary {
+    color:rgb(16, 57, 59);
+    background-color: rgba(216, 177, 107, 1);
+    border-color: rgb(196, 155, 78); 
+    border: solid 1;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1em;
+    padding: 5px;
+    margin-bottom: 10px;
+} .btn-primary:hover { color:rgb(21, 77, 80); background-color: rgba(218, 169, 80, 0.973); }
+
+#home table, #home #progreso{
+    border: solid;
+    border-radius: 10px;
+    border-color: rgba(28, 96, 101, 1);
+}
+
+#home table th, table td {
+    border: 1px;
+    border-radius: 4px;
+    border-color: rgba(28, 96, 101, 1);
+    padding: 6px;
+}
+
+.banner { 
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    padding: 18px;
+    margin-bottom: 30px;
+}
+
+#agregar legend {
+    font-weight: 600;
+    font-size: 1.10em;
+}
+
+
