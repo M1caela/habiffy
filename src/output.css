@@ -1981,9 +1981,6 @@
   .flex-col {
     flex-direction: column;
   }
-  .flex-row-reverse {
-    flex-direction: row-reverse;
-  }
   .flex-wrap {
     flex-wrap: wrap;
   }
@@ -1992,9 +1989,6 @@
   }
   .justify-center {
     justify-content: center;
-  }
-  .justify-end {
-    justify-content: flex-end;
   }
   .gap-2 {
     gap: calc(var(--spacing) * 2);
@@ -2082,9 +2076,6 @@
   .bg-indigo-200 {
     background-color: var(--color-indigo-200);
   }
-  .bg-neutral {
-    background-color: var(--color-neutral);
-  }
   .bg-white {
     background-color: var(--color-white);
   }
@@ -2147,9 +2138,6 @@
   }
   .pb-2 {
     padding-bottom: calc(var(--spacing) * 2);
-  }
-  .pb-4 {
-    padding-bottom: calc(var(--spacing) * 4);
   }
   .text-center {
     text-align: center;
@@ -2607,6 +2595,107 @@
   0%, 40% {
     scale: 1.1;
     filter: brightness(1.05) contrast(1.05);
+  }
+}
+@layer base {
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --color-base-100: #124A4E;
+      --color-base-200: #052628;
+      --color-base-300: #455D5E;
+      --color-base-content: #D2D8B4;
+      --color-primary: #B5BE83;
+      --color-primary-content: #052628;
+      --color-secondary: #124A4E;
+      --color-secondary-content: #455D5E;
+      --color-accent: #C49E59;
+      --color-accent-content: #052628;
+      --color-neutral: oklch(20% 0 0);
+      --color-neutral-content: oklch(98% 0 0);
+      --color-info: #455D5E;
+      --color-info-content: #B5BE83;
+      --color-success: #B5BE83;
+      --color-success-content: #052628;
+      --color-warning: #A75F17;
+      --color-warning-content: oklch(98% 0 0);
+      --color-error: #A74538;
+      --color-error-content: oklch(98% 0 0);
+      --radius-selector: 0.5rem;
+      --radius-field: 2rem;
+      --radius-box: 0.5rem;
+      --size-selector: 0.25rem;
+      --size-field: 0.25rem;
+      --border: 1.5px;
+      --depth: 1;
+      --noise: 0;
+    }
+  }
+}
+@layer base {
+  :root:has(input.theme-controller[value=darkgreen]:checked),[data-theme="darkgreen"] {
+    color-scheme: dark;
+    --color-base-100: #124A4E;
+    --color-base-200: #052628;
+    --color-base-300: #455D5E;
+    --color-base-content: #D2D8B4;
+    --color-primary: #B5BE83;
+    --color-primary-content: #052628;
+    --color-secondary: #124A4E;
+    --color-secondary-content: #455D5E;
+    --color-accent: #C49E59;
+    --color-accent-content: #052628;
+    --color-neutral: oklch(20% 0 0);
+    --color-neutral-content: oklch(98% 0 0);
+    --color-info: #455D5E;
+    --color-info-content: #B5BE83;
+    --color-success: #B5BE83;
+    --color-success-content: #052628;
+    --color-warning: #A75F17;
+    --color-warning-content: oklch(98% 0 0);
+    --color-error: #A74538;
+    --color-error-content: oklch(98% 0 0);
+    --radius-selector: 0.5rem;
+    --radius-field: 2rem;
+    --radius-box: 0.5rem;
+    --size-selector: 0.25rem;
+    --size-field: 0.25rem;
+    --border: 1.5px;
+    --depth: 1;
+    --noise: 0;
+  }
+}
+@layer base {
+  :where(:root),:root:has(input.theme-controller[value=lightgreen]:checked),[data-theme="lightgreen"] {
+    color-scheme: light;
+    --color-base-100: #FCF9E7;
+    --color-base-200: #d3dca1;
+    --color-base-300: #1c6065;
+    --color-base-content: #052628;
+    --color-primary: #d3dca1;
+    --color-primary-content: #1c6065;
+    --color-secondary: #1c6065;
+    --color-secondary-content: #d3dca1;
+    --color-accent: #d8b16b;
+    --color-accent-content: oklch(38% 0.063 188.416);
+    --color-neutral: #6D7D7E;
+    --color-neutral-content: #052628;
+    --color-info: #FCF9E7;
+    --color-info-content: #1c6065;
+    --color-success: #1c6065;
+    --color-success-content: #d3dca1;
+    --color-warning: oklch(26% 0.079 36.259);
+    --color-warning-content: oklch(83% 0.128 66.29);
+    --color-error: oklch(25% 0.092 26.042);
+    --color-error-content: oklch(88% 0.062 18.334);
+    --radius-selector: 0.5rem;
+    --radius-field: 2rem;
+    --radius-box: 0.5rem;
+    --size-selector: 0.25rem;
+    --size-field: 0.25rem;
+    --border: 1px;
+    --depth: 1;
+    --noise: 0;
   }
 }
 @property --tw-border-spacing-x {

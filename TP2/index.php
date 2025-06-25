@@ -6,7 +6,7 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 ?>
 
 <!DOCTYPE html>
-<html lang="es" data-theme="light">
+<html data-theme="lightgreen" lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,26 +16,10 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
     <link rel="stylesheet" href="../src/output.css"> 
 </head>
 
-<!-- bg-verde-claro -->
-<body class="bg-base-200 bg-verde-claro" id="home">
+<body class="bg-base-200" id="home">
 
-    <!-- BANNER -->
-     <!-- bg-verde-oscuro  -->
-    <!-- <div class="bg-base-300 flex w-full h-auto "> 
-        <div class="m-[12px]">
-            <h1 class="pb-4">Habiffy</h1>
-            <h2>la constancia se convierte en éxito</h2>
-        </div>
-    
-        < !--  MENÚ: pefil / salir -- > 
-        <div class="flex justify-end flex-row-reverse"><a href="login.php" title="Cerrar sesión">
-            <a href="perfil.php" title="Perfil"><img src="img/mi-perfil.png" alt="Ícono de Mi Perfil" class="ml-2 hover:scale-110 transition cursor-pointer "></a>
-            <a href="login.php" title="Cerrar sesión"><img src="img/cerrar-sesion.png" alt="Ícono de Salir" class="ml-2 hover:scale-110 transition cursor-pointer "></a>
-        </div>
-    </div> -->
-
-    <!-- componentr nav -->
-    <div class="navbar bg-base-300 bg-verde-oscuro shadow-sm">
+    <!-- NAV -->    
+    <div class="navbar bg-base-100  shadow-sm"> <!-- bg-verde-oscuro -->
         <div class="flex-1 m-8">
             <h1 class="text-xl pb-2">Habiffy</h1>
             <h2>la constancia se convierte en éxito</h2>
@@ -182,20 +166,14 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
             type="radio"
             name="theme-buttons"
             class="btn bg-verde-oscuro theme-controller join-item"
-            aria-label="Mix"
-            value="dark-light" />
-        <input
-            type="radio"
-            name="theme-buttons"
-            class="btn bg-verde-oscuro theme-controller join-item"
             aria-label="Light"
-            value="light" />
+            value="lightgreen" />
         <input
             type="radio"
             name="theme-buttons"
             class="btn bg-verde-oscuro theme-controller join-item"
             aria-label="Dark"
-            value="dark" />
+            value="darkgreen" />
 
     </div>
 
@@ -269,6 +247,7 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 
     <!-- controlador de checkbox para 'completar' habito -->
     <script>
+        /* 
         function marcarCompletado(checkbox) {
             const id = checkbox.getAttribute('data-id');
             const estado = checkbox.checked ? 1 : 0;
@@ -281,6 +260,33 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
                 location.reload();
             });
         }
+*/
+
+    // controlador checkbox + guardar historial (?)
+    function marcarCompletado(checkbox) {
+        const id = checkbox.getAttribute('data-id');
+        const estado = checkbox.checked ? 1 : 0;
+
+        // Marcar como completado en la tabla principal
+        fetch('marcar_completado.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `id=${id}&completado=${estado}`
+        }).then(() => {
+            // Si se marcó como completado, guardar en historial
+            if (estado === 1) {
+                fetch('guardar_historial.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `id=${id}`
+                });
+            }
+
+            // Refrescar la página
+            location.reload();
+        });
+    }
+
     </script>
 
     <script src="js/modal.js"></script>
