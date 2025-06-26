@@ -6,10 +6,10 @@
   default: false;
   prefersdark: true;
   color-scheme: "dark";
-  --color-base-100: #124A4E;
-  --color-base-200: #052628;
-  --color-base-300: #455D5E;
-  --color-base-content: #D2D8B4;
+  --color-base-100: #124A4E; /* verde  oscuro */
+   --color-base-200: #052628;  /* verde muy oscuro */
+  --color-base-300: #455D5E; /* verde gris */
+  --color-base-content: #D2D8B4; /* verde claro */
   --color-primary: #B5BE83;
   --color-primary-content: #052628;
   --color-secondary: #124A4E;
@@ -42,9 +42,10 @@
   default: true;
   prefersdark: false;
   color-scheme: "light";
-  --color-base-100: #FCF9E7;
-  --color-base-200: #d3dca1;
-  --color-base-300: #1c6065;
+  --color-base-100: #1c6065;  /* verde  oscuro */
+  --color-base-content: #052628;
+  --color-base-200: #d3dca1; /* verde claro */
+  --color-base-300: #FCF9E7;  /* beige */
   --color-base-content: #052628;
   --color-primary: #d3dca1;
   --color-primary-content: #1c6065;

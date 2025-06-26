@@ -126,9 +126,9 @@ if (isset($_POST['habito'])) {
             <!-- Frecuencia (requerido) -->
             <fieldset class="form-control font-semibold">
                 <legend class=" font-semibold">Frecuencia</legend>
-                <select name="frecuencia_num" class="num-frec max-w-[4em]" required></select>
+                <select name="frecuencia_num" class="num-frec max-w-[4em] bg-base-100" required></select>
                 <span name="frecuencia_num" id="vez">veces por</span>
-                <select name="frecuencia_tipo" class="max-w-[9em]" required>
+                <select name="frecuencia_tipo" class="max-w-[9em] bg-base-100" required>
                     <option value="día">día</option>
                     <option value="semana">semana</option>
                     <option value="mes">mes</option>
