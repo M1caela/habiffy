@@ -263,29 +263,7 @@ if (isset($_POST['habito'])) {
         });
     </script>
 
-    <!-- guardar modo en localStorage -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                document.documentElement.setAttribute('data-theme', savedTheme);
-                const themeButtons = document.querySelectorAll('.theme-controller');
-                themeButtons.forEach((button) => {
-                    if (button.value === savedTheme) {
-                        button.checked = true;
-                    }
-                });
-            }
-            const themeButtons = document.querySelectorAll('.theme-controller');
-            themeButtons.forEach((button) => {
-                button.addEventListener('change', function () {
-                    const selectedTheme = this.value;
-                    document.documentElement.setAttribute('data-theme', selectedTheme);
-                    localStorage.setItem('theme', selectedTheme); // Save the theme in localStorage
-                });
-            });
-        });
-    </script>
+     <script src="js/theme-handler.js"></script> <!-- guardar modo en localStorage -->
 
 </body>
 </html>

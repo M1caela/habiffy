@@ -262,31 +262,6 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
                 location.reload(); 
             });
         }
-
-        // guardar el tema en localStorage
-        document.addEventListener('DOMContentLoaded', function () {
-            // restaurar  tema desde localStorage al cargar la página
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                document.documentElement.setAttribute('data-theme', savedTheme);
-                const themeButtons = document.querySelectorAll('.theme-controller');
-                themeButtons.forEach((button) => {
-                    if (button.value === savedTheme) {
-                        button.checked = true;
-                    }
-                });
-            }
-
-            // Escuchar cambios en los botones de selección de tema
-            const themeButtons = document.querySelectorAll('.theme-controller');
-            themeButtons.forEach((button) => {
-                button.addEventListener('change', function () {
-                    const selectedTheme = this.value;
-                    document.documentElement.setAttribute('data-theme', selectedTheme);
-                    localStorage.setItem('theme', selectedTheme); // Guardar el tema en localStorage
-                });
-            });
-        });
     </script>
 
     <!-- <script>
@@ -298,11 +273,10 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
         }   , 300);
         });
     </script> -->
-
-    <script src="js/modal.js"></script>
+       
+    <script src="js/modal.js"></script>  <!-- confirm personalizado -->
     <script type="module" src="https://unpkg.com/cally"></script> <!-- calendario (daisyUI) -->
-
+    <script src="js/theme-handler.js"></script>  <!-- guardar el tema en localStorage -->
     
-
 </body>
 </html>
