@@ -197,7 +197,7 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
         </aside>
 
         <!-- redes -->
-        <nav class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+        <nav class="grid-flow-col gap-4 md:place-self-end md:justify-self-end">
             <a>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -248,25 +248,8 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
     </div>
 
     <!-- controlador de checkbox para 'completar' habito -->
-    <!-- <script>
-         
-        function marcarCompletado(checkbox) {
-            const id = checkbox.getAttribute('data-id');
-            const estado = checkbox.checked ? 1 : 0;
-
-            fetch('marcar_completado.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: `id=${id}&completado=${estado}`
-            }).then(() => {
-                location.reload();
-            });
-        }
-    </script> -->
-
-    <!-- monica -->
     <script>
-        // Función para marcar un hábito como completado
+
         function marcarCompletado(checkbox) {
             const id = checkbox.getAttribute('data-id');
             const estado = checkbox.checked ? 1 : 0;
@@ -276,13 +259,13 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: `id=${id}&completado=${estado}`
             }).then(() => {
-                location.reload(); // Recargar la página después de marcar como completado
+                location.reload(); 
             });
         }
 
-        // Guardar el tema seleccionado en localStorage
+        // guardar el tema en localStorage
         document.addEventListener('DOMContentLoaded', function () {
-            // Restaurar el tema desde localStorage al cargar la página
+            // restaurar  tema desde localStorage al cargar la página
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme) {
                 document.documentElement.setAttribute('data-theme', savedTheme);
@@ -306,7 +289,7 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
         });
     </script>
 
-    <script>
+    <!-- <script>
         // Esperar a que los estilos estén completamente cargados
         document.addEventListener('DOMContentLoaded', function() {
         // Pequeño delay para asegurar que DaisyUI esté completamente iniciado
@@ -314,7 +297,7 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
         console.log('Estilos completamente cargados');
         }   , 300);
         });
-    </script>
+    </script> -->
 
     <script src="js/modal.js"></script>
     <script type="module" src="https://unpkg.com/cally"></script> <!-- calendario (daisyUI) -->

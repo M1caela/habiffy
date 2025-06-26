@@ -8,7 +8,6 @@ $mostrarModalExito = false;
 if (isset($_POST['habito'])) {
 
     // validación de datos
-    
     if (isset($_POST['habito']) && $_POST['habito'] != "") {
         $habito = $_POST['habito'];
     } else {
@@ -69,9 +68,6 @@ if (isset($_POST['habito'])) {
     }
 }
 
-// Depuración de error: mostrar los datos enviados
-// echo "<pre>"; print_r($_POST); echo "</pre>";
-
 ?>
 
 <!DOCTYPE html>
@@ -79,7 +75,7 @@ if (isset($_POST['habito'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Habiffy | Nuevo hábito </title> 
+    <title>Crear hábito | Habiffy </title> 
 
     <link rel="stylesheet" href="../src/output.css">   
     <link rel="stylesheet" href="css/styles.css"> 
@@ -87,7 +83,7 @@ if (isset($_POST['habito'])) {
 
 <body id="agregar" class="bg-base-200">
     <!-- NAV -->    
-    <div class="navbar bg-base-100  shadow-sm"> <!-- bg-verde-oscuro -->
+    <div class="navbar bg-base-100  shadow-sm"> 
         <div class="flex-1 m-8">
             <h1 class="text-xl pb-2">Habiffy</h1>
             <h2>la constancia se convierte en éxito</h2>
@@ -114,21 +110,21 @@ if (isset($_POST['habito'])) {
         </div>
     </div>
 
-    <div id="contenedor" class="bg-[#1c6065] flex flex-col border-3 rounded-md p-8 m-10"> 
-        <form action="agregar.php" method="POST" class="flex flex-col gap-6 p-6 bg-base-100 rounded-xl shadow-md">
+    <div id="contenedor" class="flex flex-col border-3 rounded-md p-2 m-10 shadow-md"> 
+        <form action="agregar.php" method="POST" class="flex flex-col gap-6 p-6 bg-base-300 rounded-xl">
             <!-- Título del hábito (requerido) -->
             <fieldset class="form-control">
-                <legend class=" font-semibold">Título del hábito</legend>
-                <input type="text" name="habito" id="habito" class="input input-bordered" placeholder="Ej: Leer 20 minutos" required />
+                <legend class="font-semibold">Título del hábito</legend>
+                <input type="text" name="habito" id="habito" class="input input-bordered bg-base-300" placeholder="Ej: Leer 20 minutos" required />
                 <p class="text-xs mt-1 italic text-gray-500">Podrás editarlo luego desde el tablero.</p>
             </fieldset>
 
             <!-- Frecuencia (requerido) -->
             <fieldset class="form-control font-semibold">
                 <legend class=" font-semibold">Frecuencia</legend>
-                <select name="frecuencia_num" class="num-frec max-w-[4em] bg-base-100" required></select>
+                <select name="frecuencia_num" class="num-frec max-w-[4em] bg-base-300" required></select>
                 <span name="frecuencia_num" id="vez">veces por</span>
-                <select name="frecuencia_tipo" class="max-w-[9em] bg-base-100" required>
+                <select name="frecuencia_tipo" class="max-w-[9em] bg-base-300" required>
                     <option value="día">día</option>
                     <option value="semana">semana</option>
                     <option value="mes">mes</option>
@@ -163,7 +159,7 @@ if (isset($_POST['habito'])) {
             <fieldset class="form-control">
             <legend class=" font-semibold">Ícono</legend>
             
-            <input type="text" name="icono" id="icono" class="input input-bordered w-40" placeholder="🌈" maxlength="3" required />
+            <input type="text" name="icono" id="icono" class="input input-bordered w-40 bg-base-300 " placeholder="🌈" maxlength="3" required />
             <label class="label text-sm text-gray-500">Presiona <kbd class="kbd">Win</kbd> + <kbd class="kbd">.</kbd> para abrir el selector de emojis</label>
             </fieldset>
 
@@ -174,7 +170,7 @@ if (isset($_POST['habito'])) {
         </form>
     </div>
 
-        <!-- CONTROLADOR DE TEMA -->
+    <!-- CONTROLADOR DE TEMA -->
     <div class="join join-horizontal m-10">
         <input
             type="radio"
@@ -246,8 +242,6 @@ if (isset($_POST['habito'])) {
     </footer>
 
 
-    <!------>
-
     <!-- controlador de 'frecuencia' -->
     <script> // 'cantidad' del primer select 
         var selectNumero = document.querySelector(".num-frec");
@@ -266,6 +260,30 @@ if (isset($_POST['habito'])) {
             } else {
                 spanTexto.innerText = "veces por";
             }
+        });
+    </script>
+
+    <!-- guardar modo en localStorage -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                const themeButtons = document.querySelectorAll('.theme-controller');
+                themeButtons.forEach((button) => {
+                    if (button.value === savedTheme) {
+                        button.checked = true;
+                    }
+                });
+            }
+            const themeButtons = document.querySelectorAll('.theme-controller');
+            themeButtons.forEach((button) => {
+                button.addEventListener('change', function () {
+                    const selectedTheme = this.value;
+                    document.documentElement.setAttribute('data-theme', selectedTheme);
+                    localStorage.setItem('theme', selectedTheme); // Save the theme in localStorage
+                });
+            });
         });
     </script>
 
