@@ -94,7 +94,7 @@ if (isset($_POST['habito'])) {
             <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                     <div class="w-10 rounded-full">
-                        <img alt="Menú" src="img/menu.png" /> 
+                       <img alt="Menú" src="img/menu-icon.svg" />
                     </div>
                 </div>
 
@@ -241,29 +241,8 @@ if (isset($_POST['habito'])) {
         </nav>
     </footer>
 
-
-    <!-- controlador de 'frecuencia' -->
-    <script> // 'cantidad' del primer select 
-        var selectNumero = document.querySelector(".num-frec");
-        for (var i = 0; i <= 60; i++) {
-            var opcion = document.createElement("option");
-            opcion.value = i;
-            opcion.text = i;
-            selectNumero.appendChild(opcion);
-        }
-        
-        // cambiar vez/veces según cantidad
-        selectNumero.addEventListener("change", function() {
-            var spanTexto = document.getElementById("vez");
-            if (this.value == "1") {
-                spanTexto.innerText = "vez por";
-            } else {
-                spanTexto.innerText = "veces por";
-            }
-        });
-    </script>
-
-     <script src="js/theme-handler.js"></script> <!-- guardar modo en localStorage -->
+    <script src="js/controlador-frecuencia.js"></script>
+    <script src="js/theme-handler.js"></script> <!-- guardar modo en localStorage -->
 
 </body>
 </html>

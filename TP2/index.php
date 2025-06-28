@@ -30,7 +30,7 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
             <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                     <div class="w-10 rounded-full">
-                        <img alt="Menú" src="img/menu.png" /> 
+                        <img alt="Menú" src="img/menu-icon.svg" /> 
                     </div>
                 </div>
 
@@ -95,10 +95,9 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
                        
                         <tr>   
                             <!-- checkbox para completar hábito (se reinicia diarimanente) -->
-                             <!-- class="checkbox" -->
                             <td class="border p-5"> 
                                 <input type="checkbox" title="¡Completado!"
-                                    class="checkbox border-base-200 bg-neutral checked:border-success checked:bg-success checked:text-success-content"
+                                    class="checkbox border-base-200 bg-neutral checked:border-success checked:bg-success checked:text-success-content checked:text-grey checked:line-through checked:italic"
                                     name="completado" id="completado_<?= $estafila['id'] ?>"
                                     data-id="<?= $estafila['id'] ?>"
                                     onchange="marcarCompletado(this,event)"
@@ -149,13 +148,29 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 
         <div class="subcontenedor flex justify-center align-items flex-col md:flex-row lg:flex-row p-4 max-w-[98%]"> 
             <!-- CALENDARIO -->
-            <section class="calendario self-star">        
+
+             <section class="calendario self-start">        
+                <calendar-date
+                    class="cally bg-base-100 border border-base-300 shadow-lg rounded-box"
+                    id="calendar"
+                >
+                    <svg aria-label="Previous" class="fill-current size-4" slot="previous" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M15.75 19.5 8.25 12l7.5-7.5"></path>
+                    </svg>
+                    <svg aria-label="Next" class="fill-current size-4" slot="next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
+                    </svg>
+                    <calendar-month></calendar-month>
+                </calendar-date>
+            </section>
+
+            <!-- <section class="calendario self-star">        
                 <calendar-date class="cally bg-base-100 border border-base-300 shadow-lg rounded-box">
                     <svg aria-label="Previous" class="fill-current size-4" slot="previous" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M15.75 19.5 8.25 12l7.5-7.5"></path></svg>
                     <svg aria-label="Next" class="fill-current size-4" slot="next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="m8.25 4.5 7.5 7.5-7.5 7.5"></path></svg>
                     <calendar-month></calendar-month>
                 </calendar-date>
-            </section> 
+            </section>  -->
 
             <!--  NOTAS *proximamente*
                 <section class="notas" > </section> 
@@ -247,36 +262,27 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
         </div>
     </div>
 
-    <!-- controlador de checkbox para 'completar' habito -->
-    <script>
+    <!-- Modal flotante calendario -->
+    <input type="checkbox" id="modal-dia" class="modal-toggle" />
+    <div class="modal">
+        <div class="modal-box">
+            <h3 class="font-bold text-lg" id="modal-titulo">Hábitos del día</h3>
+            <p class="py-4" id="modal-contenido">Aquí se mostrarán los hábitos completados para el día seleccionado.</p>
+            <div class="modal-action">
+                <label for="modal-dia" class="btn">Cerrar</label>
+            </div>
+        </div>
+    </div>
 
-        function marcarCompletado(checkbox) {
-            const id = checkbox.getAttribute('data-id');
-            const estado = checkbox.checked ? 1 : 0;
 
-            fetch('marcar_completado.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: `id=${id}&completado=${estado}`
-            }).then(() => {
-                location.reload(); 
-            });
-        }
-    </script>
-
-    <!-- <script>
-        // Esperar a que los estilos estén completamente cargados
-        document.addEventListener('DOMContentLoaded', function() {
-        // Pequeño delay para asegurar que DaisyUI esté completamente iniciado
-        setTimeout(() => {
-        console.log('Estilos completamente cargados');
-        }   , 300);
-        });
-    </script> -->
        
+    <!-- <script src="js/controlador-checkbox.js"></script> -->
     <script src="js/modal.js"></script>  <!-- confirm personalizado -->
-    <script type="module" src="https://unpkg.com/cally"></script> <!-- calendario (daisyUI) -->
     <script src="js/theme-handler.js"></script>  <!-- guardar el tema en localStorage -->
+    <script type="module" src="https://unpkg.com/cally"></script> <!-- calendario (daisyUI) -->
+    
+    <script src="js/calendar-handler.js"></script>
+
     
 </body>
 </html>

@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                     <div class="w-10 rounded-full">
-                        <img alt="Menú" src="img/menu.png" /> 
+                        <img alt="Menú" src="img/menu-icon.svg" />
                     </div>
                 </div>
 
@@ -130,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <!-- Frecuencia (requerido) -->
             <fieldset class="form-control font-semibold">
                 <legend class="font-semibold">Frecuencia</legend>
-                <select name="frecuencia_num" class="num-frec max-w-[4em]" required>
+                <select name="frecuencia_num" class="num-frec max-w-[4em] bg-base-300" required>
                     <?php
                     for ($i = 1; $i <= 60; $i++) {
                         $selected = ($i == $frecuencia_num) ? "selected" : "";
@@ -139,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     ?>
                 </select>
                 <span id="vez"><?= ($frecuencia_num == 1) ? "vez por" : "veces por" ?></span>
-                <select name="frecuencia_tipo" class="max-w-[9em]" required>
+                <select name="frecuencia_tipo" class="max-w-[9em] bg-base-300" required>
                     <option value="día" <?= ($frecuencia_tipo == 'día') ? "selected" : "" ?>>día</option>
                     <option value="semana" <?= ($frecuencia_tipo == 'semana') ? "selected" : "" ?>>semana</option>
                     <option value="mes" <?= ($frecuencia_tipo == 'mes') ? "selected" : "" ?>>mes</option>
@@ -256,18 +256,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </footer>
 
 
-    <!-- controlador de 'frecuencia' (dia de select y vez/veces) -->
-    <script>
-        var selectNumero = document.querySelector(".num-frec");
-        var spanTexto = document.getElementById("vez");
-
-        selectNumero.addEventListener("change", function () {
-            spanTexto.innerText = this.value == "1" ? "vez por" : "veces por";
-        });
-    </script>
-
-  
-   <script src="js/theme-handler.js"></script> <!-- guardar modo en localStorage -->
+    <script src="js/controlador-frecuencia.js"></script>
+    <script src="js/theme-handler.js"></script> <!-- guardar modo en localStorage -->
 
 </body>
 
