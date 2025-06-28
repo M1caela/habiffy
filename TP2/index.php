@@ -74,60 +74,57 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 
         <div class="subcontenedor flex justify-center align-items flex-col md:flex-row lg:flex-row">                
             <!-- TABLA DE HÁBITOS -->
-            <section id="tabla" >
+            <section id="tabla">
                 <a href="agregar.php"><button class="btn btn-primary">+ Nuevo hábito</button></a>
-                <table class="min-w-[500px] border-separate border-spacing-2 border bg-base-300 text-center p-[6px] mb-[6px] ">
-                    <thead>
-                        <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th class="border p-5 text-left">Hábito</th>
-                        <th class="border p-5 text-left">Frecuencia</th>
-                        <th class="border p-5">Días</th>
-                        <th class="border p-5">Relevancia</th>
-                        <th class="border p-5">Ícono</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <?php while( $estafila = $result->fetch_array() ) { ?>
-                       
-                        <tr>   
-                            <!-- checkbox para completar hábito (se reinicia diarimanente) -->
-                            <td class="border p-5"> 
-                                <input type="checkbox" title="¡Completado!"
-                                    class="checkbox border-base-200 bg-neutral checked:border-success checked:bg-success checked:text-success-content checked:text-grey checked:line-through checked:italic"
-                                    name="completado" id="completado_<?= $estafila['id'] ?>"
-                                    data-id="<?= $estafila['id'] ?>"
-                                    onchange="marcarCompletado(this,event)"
-                                    <?= isset($habitosCompletados[$estafila['id']]) ? 'checked' : '' ?>
-                                >
-                            </td> 
-
-                            <th>   
-                                <!-- botones editar / eliminar -->
-                                <a  href="editar.php?id=<?php echo $estafila['id']; ?>" class="ml-2  inline-block hover:scale-110 transition cursor-pointer" title="Editar" >✏️</a>
-                                <button 
-                                    class="ml-2 hover:scale-110 transition cursor-pointer" title="Eliminar" onclick="mostrarConfirmacion({
-                                        titulo: '¿Eliminar hábito?',
-                                        mensaje: 'Quitaremos “<?= htmlspecialchars($estafila['habito'], ENT_QUOTES) ?>” de la tabla. Esta acción no se puede deshacer.',
-                                        onConfirm: () => window.location.href = 'eliminar.php?id=<?= $estafila['id'] ?>'
-                                    })">
-                                    ❌
-                                </button>
-                            </th>
-
-                            <td></td>                                                                                       <!-- esto es para cuando se "completó" el hábito -->
-                            <td class="border p-5 font-semibold text-left <?= isset($habitosCompletados[$estafila['id']]) ? 'line-through italic text-gray-500' : '' ?>"><?php echo $estafila['habito']; ?></td>
-                            <td class="border p-5 text-left <?= isset($habitosCompletados[$estafila['id']]) ? 'line-through italic text-gray-500' : '' ?>"><?php echo $estafila['frecuencia']; ?></td>
-                            <td class="border p-5 text-left <?= isset($habitosCompletados[$estafila['id']]) ? 'line-through italic text-gray-500' : '' ?>"><?php echo $estafila['dia']; ?></td>
-                            <td class="border p-5 font-medium <?= isset($habitosCompletados[$estafila['id']]) ? 'line-through italic text-gray-500' : '' ?>"><?php echo $estafila['relevancia']; ?></td>
-                            <td class="border p-5 text-xl <?= isset($habitosCompletados[$estafila['id']]) ? 'line-through italic text-gray-500' : '' ?>"><?php echo $estafila['icono']; ?></td>
-                        </tr>
-                        <?php } ?>
-                    </tbody>
-                </table> <?php } ?> 
+                <!-- Contenedor con scroll horizontal -->
+                <div class="overflow-x-auto max-w-full">
+                    <table class="table-auto min-w-[500px] max-w-full border-separate border-spacing-2 border bg-base-300 text-center p-4 m-6">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th class="border p-5 text-left">Hábito</th>
+                                <th class="border p-5 text-left">Frecuencia</th>
+                                <th class="border p-5">Días</th>
+                                <th class="border p-5">Relevancia</th>
+                                <th class="border p-5">Ícono</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php while( $estafila = $result->fetch_array() ) { ?>
+                            <tr>
+                                <td class="border p-5">
+                                    <input type="checkbox" title="¡Completado!"
+                                        class="checkbox border-base-200 bg-neutral checked:border-success checked:bg-success checked:text-success-content checked:text-grey checked:line-through checked:italic"
+                                        name="completado" id="completado_<?= $estafila['id'] ?>"
+                                        data-id="<?= $estafila['id'] ?>"
+                                        onchange="marcarCompletado(this,event)"
+                                        <?= isset($habitosCompletados[$estafila['id']]) ? 'checked' : '' ?>
+                                    >
+                                </td>
+                                <th>
+                                    <a href="editar.php?id=<?php echo $estafila['id']; ?>" class="ml-2 inline-block hover:scale-110 transition cursor-pointer" title="Editar">✏️</a>
+                                    <button
+                                        class="ml-2 hover:scale-110 transition cursor-pointer" title="Eliminar" onclick="mostrarConfirmacion({
+                                            titulo: '¿Eliminar hábito?',
+                                            mensaje: 'Quitaremos “<?= htmlspecialchars($estafila['habito'], ENT_QUOTES) ?>” de la tabla. Esta acción no se puede deshacer.',
+                                            onConfirm: () => window.location.href = 'eliminar.php?id=<?= $estafila['id'] ?>'
+                                        })">
+                                        ❌
+                                    </button>
+                                </th>
+                                <td></td>
+                                <td class="border p-5 font-semibold text-left <?= isset($habitosCompletados[$estafila['id']]) ? 'line-through italic text-gray-500' : '' ?>"><?php echo $estafila['habito']; ?></td>
+                                <td class="border p-5 text-left <?= isset($habitosCompletados[$estafila['id']]) ? 'line-through italic text-gray-500' : '' ?>"><?php echo $estafila['frecuencia']; ?></td>
+                                <td class="border p-5 text-left <?= isset($habitosCompletados[$estafila['id']]) ? 'line-through italic text-gray-500' : '' ?>"><?php echo $estafila['dia']; ?></td>
+                                <td class="border p-5 font-medium <?= isset($habitosCompletados[$estafila['id']]) ? 'line-through italic text-gray-500' : '' ?>"><?php echo $estafila['relevancia']; ?></td>
+                                <td class="border p-5 text-xl <?= isset($habitosCompletados[$estafila['id']]) ? 'line-through italic text-gray-500' : '' ?>"><?php echo $estafila['icono']; ?></td>
+                            </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>  <?php } ?>
+                </div>
             </section>
 
             <!-- SECCIÓN DE PROGESO *falta vincular con cada hábito* -->

@@ -19,27 +19,32 @@ h2 {
 }
 
 body {
+    overflow-x: hidden; /* evita el desplazamiento horizontal en el body */
     margin: 0; padding: 0;
     font-family: "Quicksand", sans-serif;
     font-optical-sizing: auto;
 }
 
-.bg-verde-claro {
-    background-color: rgba(211, 220, 161, 1);
-    color: rgba(28, 96, 101, 1);
+/* Asegurar que los contenedores no excedan el ancho del viewport */
+#contenedor, .subcontenedor {
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
-.bg-verde-oscuro {
-    background-color: rgba(28, 96, 101, 1);
-    color:  rgba(211, 220, 161, 1);
+/* Esta parte sirve para que la tabla se vea bien en mobile y no se desborde, sino que se desplace */
+#tabla .overflow-x-auto {
+    overflow-x: auto;
+    max-width: 100%;
 }
 
-.bg-beige {
-    background-color:rgba(252, 249, 231, 1);
-    color: rgba(28, 96, 101, 1);
+/* La tabla debe ajustarse al contenedor */
+#tabla table {
+    width: 100%;
+    min-width: 500px; 
 }
 
-.btn-primary {
+
+/* .btn-primary {
     color:rgb(16, 57, 59);
     background-color: rgba(216, 177, 107, 1);
     border-color: rgb(196, 155, 78); 
@@ -49,18 +54,7 @@ body {
     font-size: 1em;
     padding: 5px;
     margin-bottom: 10px;
-} .btn-primary:hover { color:rgb(21, 77, 80); background-color: rgba(219, 165, 65, 0.973); } 
-
-/* sin uso  */
-.btn-secondary {
-    border-color: rgb(196, 155, 78); 
-    border: solid 2;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 1em;
-    padding: 5px;
-    margin-bottom: 10px;
-} .btn-secondary:hover { border-color: rgb(175, 130, 46);}
+} .btn-primary:hover { color:rgb(21, 77, 80); background-color: rgba(219, 165, 65, 0.973); }  */
 
 
 #home table, #home #progreso{
@@ -89,27 +83,5 @@ body {
     font-size: 1.10em;
 }
 
-#img-editar {
-    width: 5px;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-/* #home #contenedor {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    margin: 4em;
-}
-
-@media (max-width: 600px) {
-   #home #contenedor {
-    display: block;
-    flex-direction: column;
-} 
-
-
-}*/
 
