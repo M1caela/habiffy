@@ -1,3 +1,5 @@
+// para el confirm personalizado (al eliminar hábito)
+
 function mostrarConfirmacion({ titulo, mensaje, onConfirm }) {
     const modal = document.getElementById("modalConfirm");
     const tituloElem = document.getElementById("modal-titulo");

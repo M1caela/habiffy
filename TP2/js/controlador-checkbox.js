@@ -1,5 +1,5 @@
     // controlador de checkbox para 'completar' habito 
-    
+
     function marcarCompletado(checkbox) {
         const id = checkbox.getAttribute('data-id');
         const estado = checkbox.checked ? 1 : 0;

@@ -1,6 +1,5 @@
 // Guardar el tema (dark/light) seleccionado en localStorage
 
-
 document.addEventListener('DOMContentLoaded', function () {
      // Restaurar el tema desde localStorage al cargar la página
     const savedTheme = localStorage.getItem('theme');

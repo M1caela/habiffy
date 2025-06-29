@@ -1,8 +1,4 @@
-
-/**********************************************************************************************************************************/
-
 @import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Hand:wght@400..700&family=Quicksand:wght@300..700&display=swap');
-
 
 h1 {
     font-family: "Edu VIC WA NT Hand", cursive;
@@ -31,30 +27,22 @@ body {
     overflow-x: hidden;
 }
 
-/* Esta parte sirve para que la tabla se vea bien en mobile y no se desborde, sino que se desplace */
+/* para que la tabla se vea bien en mobile y no se desborde, sino que se desplace */
 #tabla .overflow-x-auto {
     overflow-x: auto;
     max-width: 100%;
 }
 
-/* La tabla debe ajustarse al contenedor */
 #tabla table {
     width: 100%;
     min-width: 500px; 
 }
 
+.bg-verde-oscuro {
+    background-color: rgba(28, 96, 101, 1);
+    color:  rgba(211, 220, 161, 1);
+}
 
-/* .btn-primary {
-    color:rgb(16, 57, 59);
-    background-color: rgba(216, 177, 107, 1);
-    border-color: rgb(196, 155, 78); 
-    border: solid 1;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 1em;
-    padding: 5px;
-    margin-bottom: 10px;
-} .btn-primary:hover { color:rgb(21, 77, 80); background-color: rgba(219, 165, 65, 0.973); }  */
 
 
 #home table, #home #progreso{
@@ -70,18 +58,9 @@ body {
     padding: 6px;
 }
 
-.banner { 
-    display: flex;
-    flex-direction:column;
-    justify-content: center;
-    padding: 18px;
-    margin-bottom: 30px;
-}
 
 #agregar legend {
     font-weight: 600;
     font-size: 1.10em;
 }
-
-
 

@@ -1,3 +1,6 @@
+<!-- controlador de checkbox para 'completar' habit, se guarda el hábito marcado en una nueva tabla. 
+ esto se reinicia diariamente de forma automática -->
+
 <?php
 require_once("conexion.php");
 

@@ -1,3 +1,6 @@
+// esto seria para que los habitos completos se guarden en calendar y l hacer clic en un dia, se abra un modal flotante informativo
+// no estaria funcionando
+
 document.addEventListener('DOMContentLoaded', function () {
     const calendar = document.querySelector('#calendar');
 

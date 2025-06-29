@@ -1,4 +1,7 @@
+//  controlador de los select de 'frecuencia' al agregar/editar hábito
+ 
  var selectNumero = document.querySelector(".num-frec");
+        //  completa los números del select
         for (var i = 0; i <= 60; i++) {
             var opcion = document.createElement("option");
             opcion.value = i;
