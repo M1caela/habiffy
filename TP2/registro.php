@@ -11,8 +11,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $mysqli->prepare("INSERT INTO usuarios (nombre, email, contrasena) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $nombre, $email, $contrasena);
 
-    if ($stmt->execute()) {
-        $mensaje = "¡Registro exitoso! Podés iniciar sesión.";
+   if ($stmt->execute()) {
+    echo "<script>
+        if (alert('¡Registro exitoso! Ya podés iniciar sesión.')) {
+            window.location.href = 'login.php';
+        } else {
+            window.location.href = 'login.php';
+        }
+    </script>";
+    exit();
     } else {
         $mensaje = "Error: " . $stmt->error;
     }
@@ -43,22 +50,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div id="fondo-login" class=p-10>
         <div class="flex justify-center align-center p-6 ">
-            
-
-            <?php if ($mensaje): ?>
-                <div class="alert alert-info mb-4"><?= $mensaje ?></div>
-            <?php endif; ?>
-
             <fieldset class="fieldset bg-base-100 border-base-200 text-base-content rounded-box w-xs border p-10">
-            <label class="text-xl text-center font-bold mb-4">Crear cuenta</label>
-            <form method="POST" class="flex flex-col gap-4">
-                <input type="text" name="nombre" placeholder="Nombre" required class="input input-bordered" />
-                <input type="email" name="email" placeholder="Email" required class="input input-bordered" />
-                <input type="password" name="contrasena" placeholder="Contraseña" required class="input input-bordered" />
-                <button type="submit" class="btn btn-accent">Registrarse</button>
-            </form>
+                <label class="text-xl text-center font-bold mb-4">Crear cuenta</label>
+                <form method="POST" class="flex flex-col gap-4">
+                    <input type="text" name="nombre" placeholder="Nombre" required class="input input-bordered" />
+                    <input type="email" name="email" placeholder="Email" required class="input input-bordered" />
+                    <input type="password" name="contrasena" placeholder="Contraseña" required class="input input-bordered" />
+                    <button type="submit" class="btn btn-accent">Registrarse</button>
+                </form>
 
-            <a href="login.php" class="mt-4 text-center hover:scale-110 transition cursor-pointer">¿Ya tenés cuenta? Iniciar sesión</a>
+                <a href="login.php" class="mt-4 text-center hover:scale-110 transition cursor-pointer">¿Ya tenés cuenta? Iniciar sesión</a>
             </fieldset>
         </div>
 
