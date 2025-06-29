@@ -64,3 +64,11 @@ body {
     font-size: 1.10em;
 }
 
+#fondo-login {
+    background-image: url('../img/fondo-login.svg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
+}
+

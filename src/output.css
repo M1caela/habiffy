@@ -12,7 +12,6 @@
     --color-gray-500: oklch(55.1% 0.027 264.364);
     --color-gray-900: oklch(21% 0.034 264.665);
     --color-neutral-700: oklch(37.1% 0 0);
-    --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
     --container-xs: 20rem;
@@ -27,14 +26,10 @@
     --text-xl--line-height: calc(1.75 / 1.25);
     --text-2xl: 1.5rem;
     --text-2xl--line-height: calc(2 / 1.5);
-    --text-4xl: 2.25rem;
-    --text-4xl--line-height: calc(2.5 / 2.25);
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
     --tracking-tight: -0.025em;
-    --leading-normal: 1.5;
-    --leading-relaxed: 1.625;
     --radius-md: 0.375rem;
     --radius-lg: 0.5rem;
     --radius-xl: 0.75rem;
@@ -1660,6 +1655,15 @@
       }
     }
   }
+  .absolute {
+    position: absolute;
+  }
+  .relative {
+    position: relative;
+  }
+  .inset-0 {
+    inset: calc(var(--spacing) * 0);
+  }
   .dropdown-right {
     --anchor-h: right;
     --anchor-v: span-bottom;
@@ -1769,8 +1773,14 @@
       cursor: not-allowed;
     }
   }
+  .-z-10 {
+    z-index: calc(10 * -1);
+  }
   .z-1 {
     z-index: 1;
+  }
+  .z-10 {
+    z-index: 10;
   }
   .modal-box {
     grid-column-start: 1;
@@ -1834,6 +1844,9 @@
   }
   .m-\[12px\] {
     margin: 12px;
+  }
+  .m-auto {
+    margin: auto;
   }
   .filter {
     display: flex;
@@ -2010,8 +2023,15 @@
   .mr-1 {
     margin-right: calc(var(--spacing) * 1);
   }
-  .mb-2 {
-    margin-bottom: calc(var(--spacing) * 2);
+  .fieldset-legend {
+    margin-bottom: calc(0.25rem * -1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: calc(0.25rem * 2);
+    padding-block: calc(0.25rem * 2);
+    color: var(--color-base-content);
+    font-weight: 600;
   }
   .mb-4 {
     margin-bottom: calc(var(--spacing) * 4);
@@ -2265,6 +2285,9 @@
   .h-auto {
     height: auto;
   }
+  .h-full {
+    height: 100%;
+  }
   .min-h-full {
     min-height: 100%;
   }
@@ -2342,6 +2365,9 @@
   }
   .w-auto {
     width: auto;
+  }
+  .w-full {
+    width: 100%;
   }
   .w-xs {
     width: var(--container-xs);
@@ -2430,6 +2456,9 @@
   .justify-center {
     justify-content: center;
   }
+  .justify-start {
+    justify-content: flex-start;
+  }
   .gap-2 {
     gap: calc(var(--spacing) * 2);
   }
@@ -2449,14 +2478,14 @@
       margin-block-end: calc(calc(var(--spacing) * 2) * calc(1 - var(--tw-space-y-reverse)));
     }
   }
-  .place-self-start {
-    place-self: start;
+  .self-baseline {
+    align-self: baseline;
   }
   .self-start {
     align-self: flex-start;
   }
-  .justify-self-start {
-    justify-self: flex-start;
+  .overflow-hidden {
+    overflow: hidden;
   }
   .overflow-x-auto {
     overflow-x: auto;
@@ -2495,6 +2524,9 @@
   .border-3 {
     border-style: var(--tw-border-style);
     border-width: 3px;
+  }
+  .border-base-100 {
+    border-color: var(--color-base-100);
   }
   .border-base-200 {
     border-color: var(--color-base-200);
@@ -2546,6 +2578,9 @@
   }
   .p-10 {
     padding: calc(var(--spacing) * 10);
+  }
+  .p-12 {
+    padding: calc(var(--spacing) * 12);
   }
   .p-\[6px\] {
     padding: 6px;
@@ -2630,6 +2665,18 @@
   .progress-primary {
     color: var(--color-primary);
   }
+  .text-\[\#C7CF98\] {
+    color: #C7CF98;
+  }
+  .text-base-100 {
+    color: var(--color-base-100);
+  }
+  .text-base-200 {
+    color: var(--color-base-200);
+  }
+  .text-base-content {
+    color: var(--color-base-content);
+  }
   .text-gray-500 {
     color: var(--color-gray-500);
   }
@@ -2638,6 +2685,9 @@
   }
   .text-info {
     color: var(--color-info);
+  }
+  .text-neutral {
+    color: var(--color-neutral);
   }
   .text-neutral-content {
     color: var(--color-neutral-content);
@@ -2707,6 +2757,10 @@
   .ease-out {
     --tw-ease: var(--ease-out);
     transition-timing-function: var(--ease-out);
+  }
+  .btn-accent {
+    --btn-color: var(--color-accent);
+    --btn-fg: var(--color-accent-content);
   }
   .btn-error {
     --btn-color: var(--color-error);
@@ -2791,11 +2845,6 @@
   .md\:flex-row {
     @media (width >= 48rem) {
       flex-direction: row;
-    }
-  }
-  .md\:place-self-center {
-    @media (width >= 48rem) {
-      place-self: center;
     }
   }
   .md\:place-self-end {
@@ -3118,7 +3167,7 @@
     --color-base-100: #1c6065;
     --color-base-content: #C7CF98;
     --color-base-200: #d3dca1;
-    --color-base-300: #FCF9E7;
+    --color-base-300: #DBDECB;
     --color-primary: #d3dca1;
     --color-primary-content: #1c6065;
     --color-secondary: #1c6065;

@@ -19,16 +19,16 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 <body class="bg-base-200" id="home">
 
     <!-- NAVBAR -->    
-    <div class="navbar bg-base-100  shadow-sm"> 
+    <div class="navbar bg-base-100 shadow-sm"> 
         <div class="flex-1 m-8">
-            <h1 class="text-xl pb-2">Habiffy</h1>
-            <h2>la constancia se convierte en éxito</h2>
+            <h1 class="text-xl pb-2 text-[#C7CF98]">Habiffy</h1>
+            <h2 class="text-[#C7CF98]">la constancia se convierte en éxito</h2>
         </div>
 
         <div class="flex-none m-4">
             <!-- MENÚ -->
             <div class="dropdown dropdown-end">
-                <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
                     <div class="w-10 rounded-full">
                         <img alt="Menú" src="img/menu-icon.svg" /> 
                     </div>
@@ -37,9 +37,8 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
                 <!-- opciones -->
                 <ul tabindex="0"class="menu menu-sm dropdown-content bg-base-300 bg-verde-oscuro rounded-box z-1 mt-3 w-52 p-2 shadow">
                   
-                    <li><a>Perfil</a></li>   
+                    <li><a>Perfil</a></li>    <!-- *falta desarrollar* -->
                     <li><a>Preguntas</a></li> <!-- *falta desarrollar* -->
-                    <li><a>Contacto</a></li>
                     <li><a>Cerrar sesión</a></li>
                 </ul>
             </div>
@@ -51,7 +50,8 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
         <h3 class="font-semibold text-xl p-4 m-2">¡Hola de nuevo<?php $NombreUsuario ?>!🫡</h3>  
     </div>
 
-    <div id="contenedor" class="p-8 m-4 max-w-[98%]">    
+    <div id="contenedor" class="p-8 m-4">   
+        
         <?php 
             // se crea una consulta SQL que pide todos los registros de la tabla habitos
             $query = "SELECT * FROM habitos"; 
@@ -126,6 +126,9 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
                     </table>  <?php } ?>
                 </div>
             </section>
+        </div>   
+
+        <div class="subcontenedor flex justify-center align-items flex-col md:flex-row lg:flex-row p-4 m-auto">   
 
             <!-- SECCIÓN DE PROGESO *falta vincular con cada hábito* -->
             <section id="progreso" class="bg-base-300 w-64 h-auto p-4 m-2 md:m-10 md:mt-12">
@@ -141,39 +144,27 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
                 </div>
             </section> 
 
-        </div>   
-
-        <div class="subcontenedor flex justify-center align-items flex-col md:flex-row lg:flex-row p-4 max-w-[98%]"> 
             <!-- CALENDARIO -->
-
-             <section class="calendario self-start">        
-                <calendar-date
-                    class="cally bg-base-100 border border-base-300 shadow-lg rounded-box"
-                    id="calendar"
-                >
-                    <svg aria-label="Previous" class="fill-current size-4" slot="previous" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path fill="currentColor" d="M15.75 19.5 8.25 12l7.5-7.5"></path>
-                    </svg>
-                    <svg aria-label="Next" class="fill-current size-4" slot="next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path fill="currentColor" d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
-                    </svg>
-                    <calendar-month></calendar-month>
-                </calendar-date>
-            </section>
-
-            <!-- <section class="calendario self-star">        
-                <calendar-date class="cally bg-base-100 border border-base-300 shadow-lg rounded-box">
-                    <svg aria-label="Previous" class="fill-current size-4" slot="previous" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M15.75 19.5 8.25 12l7.5-7.5"></path></svg>
-                    <svg aria-label="Next" class="fill-current size-4" slot="next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="m8.25 4.5 7.5 7.5-7.5 7.5"></path></svg>
-                    <calendar-month></calendar-month>
-                </calendar-date>
-            </section>  -->
+             <div class="flex justify-start">
+                <section class="calendario self-start">        
+                    <calendar-date id="calendar" class="cally bg-base-300 text-base-100 border border-base-100 shadow-lg rounded-box">
+                        <svg aria-label="Previous" class="fill-current size-4" slot="previous" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M15.75 19.5 8.25 12l7.5-7.5"></path>
+                        </svg>
+                        <svg aria-label="Next" class="fill-current size-4" slot="next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
+                        </svg>
+                        <calendar-month></calendar-month>
+                    </calendar-date>
+                </section>
+            </div>
 
             <!--  NOTAS *proximamente*
                 <section class="notas" > </section> 
             -->
         </div>
     </div>
+
 
     <!-- CONTROLADOR DE TEMA -->
     <div class="join join-horizontal m-10">
@@ -237,6 +228,7 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
         </nav>
     </footer>
 
+
     <!-- confirmación personalizada (para eliminar habito) -->
     <input type="checkbox" id="modal-alerta" class="modal-toggle" />
     <div class="modal" id="modalConfirm">
@@ -250,17 +242,6 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
         </div>
     </div>
 
-    <!-- Modal flotante calendario -->
-    <!-- <input type="checkbox" id="modal-dia" class="modal-toggle" />
-    <div class="modal">
-        <div class="modal-box">
-            <h3 class="font-bold text-lg" id="modal-titulo">Hábitos del día</h3>
-            <p class="py-4" id="modal-contenido">Aquí se mostrarán los hábitos completados para el día seleccionado.</p>
-            <div class="modal-action">
-                <label for="modal-dia" class="btn">Cerrar</label>
-            </div>
-        </div>
-    </div> -->
 
     <script src="js/controlador-checkbox.js"></script> <!-- estilos del hábito cuando se marcó completo -->
     <script src="js/modal.js"></script>  <!-- confirm personalizado -->
