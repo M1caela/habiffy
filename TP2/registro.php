@@ -1,32 +1,20 @@
 <?php
-include('conexion.php'); // conexión a la base de datos
-session_start();
+include('conexion.php'); // tu archivo de conexión
 
 $mensaje = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nombre = $_POST['nombre'];
     $email = $_POST['email'];
-    $clave = $_POST['clave'];
+    $contrasena = password_hash($_POST['contrasena'], PASSWORD_DEFAULT);
 
-    $stmt = $mysqli->prepare("SELECT id, nombre, contrasena FROM usuarios WHERE email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->store_result();
+    $stmt = $mysqli->prepare("INSERT INTO usuarios (nombre, email, contrasena) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $nombre, $email, $contrasena);
 
-    if ($stmt->num_rows > 0) {
-        $stmt->bind_result($id, $nombre, $contrasena_hash);
-        $stmt->fetch();
-
-        if (password_verify($clave, $contrasena_hash)) {
-            $_SESSION['usuario_id'] = $id;
-            $_SESSION['usuario_nombre'] = $nombre;
-            header("Location: index.php");
-            exit();
-        } else {
-            $mensaje = "Contraseña incorrecta.";
-        }
+    if ($stmt->execute()) {
+        $mensaje = "¡Registro exitoso! Podés iniciar sesión.";
     } else {
-        $mensaje = "El email no está registrado.";
+        $mensaje = "Error: " . $stmt->error;
     }
 
     $stmt->close();
@@ -34,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!DOCTYPE html>
-<html data-theme="lightgreen" lang="es">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body class="bg-base-200">
+
     <div class="navbar bg-base-100 shadow-sm"> 
         <div class="flex-1 m-8">
             <h1 class="text-xl pb-2 text-[#C7CF98]">Habiffy</h1>
@@ -52,26 +41,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 
-<div id="fondo-login" class="p-10 min-h-screen bg-base-200">
-    <main>
-        <!-- LOGIN -->
-        <div class="flex justify-center align-center p-6 m-6">
+    <div id="fondo-login" class=p-10>
+        <div class="flex justify-center align-center p-6 ">
+            
+
+            <?php if ($mensaje): ?>
+                <div class="alert alert-info mb-4"><?= $mensaje ?></div>
+            <?php endif; ?>
+
             <fieldset class="fieldset bg-base-100 border-base-200 text-base-content rounded-box w-xs border p-10">
-                <form method="POST" class="flex flex-col">
-                    <label class="font-semibold text-xl">Email</label>
-                    <input type="email" name="email" class="input mb-4" placeholder="Email" required />
+            <label class="text-xl text-center font-bold mb-4">Crear cuenta</label>
+            <form method="POST" class="flex flex-col gap-4">
+                <input type="text" name="nombre" placeholder="Nombre" required class="input input-bordered" />
+                <input type="email" name="email" placeholder="Email" required class="input input-bordered" />
+                <input type="password" name="contrasena" placeholder="Contraseña" required class="input input-bordered" />
+                <button type="submit" class="btn btn-accent">Registrarse</button>
+            </form>
 
-                    <label class="font-semibold text-xl">Clave</label>
-                    <input type="password" name="clave" class="input mb-4" placeholder="Clave" required />
-
-                    <?php if ($mensaje): ?>
-                        <div class="alert alert-error text-sm mt-2 mb-4"><?= $mensaje ?></div>
-                    <?php endif; ?>
-
-                    <button type="submit" class="btn btn-primary mt-4 font-semibold">Iniciar Sesión</button>
-                </form>
-
-                <a href="registro.php" class="text-center mt-4 hover:scale-110 transition cursor-pointer block">Registrarse</a>
+            <a href="login.php" class="mt-4 text-center hover:scale-110 transition cursor-pointer">¿Ya tenés cuenta? Iniciar sesión</a>
             </fieldset>
         </div>
 
@@ -90,9 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 aria-label="Dark"
                 value="darkgreen" />
         </div>
-    </main>
-</div>
-
+    </div>
 
     <footer class="footer sm:footer-horizontal bg-verde-oscuro text-neutral-content p-6">
         <aside>
@@ -139,8 +124,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </a>
         </nav>
     </footer>
-
-    <script src="js/theme-handler.js"></script>  <!-- guardar el tema en localStorage -->
 
 </body>
 </html>

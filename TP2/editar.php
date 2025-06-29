@@ -1,6 +1,13 @@
 <?php
 require_once("conexion.php");
 
+// seguridad de login
+session_start();
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
 // Obtener el ID del hábito a editar
 if (!isset($_GET['id'])) {
     echo "No se especificó un hábito para editar.";

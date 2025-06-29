@@ -3,6 +3,13 @@
 <?php
 require_once("conexion.php");
 date_default_timezone_set('America/Argentina/Buenos_Aires');
+
+// seguridad del login
+session_start();
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: login.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +46,7 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
                   
                     <li><a>Perfil</a></li>    <!-- *falta desarrollar* -->
                     <li><a>Preguntas</a></li> <!-- *falta desarrollar* -->
-                    <li><a>Cerrar sesión</a></li>
+                    <li><a href="logout.php">Cerrar sesión</a></li>
                 </ul>
             </div>
         </div>
